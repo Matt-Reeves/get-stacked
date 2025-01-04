@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "environment": [
+    {
+      "name": "DYLD_LIBRARY_PATH",
+      "value": "/usr/local/lib"
+    }
+  ],
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug",
+      "program": "game",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "DYLD_LIBRARY_PATH": "/usr/local/lib"
+      },
+      "preLaunchTask": "Debug" // Ensures the "Debug" build task is run before launching
+    }
+  ]
+}

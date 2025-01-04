@@ -1,0 +1,33 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Debug",
+            "command": "/usr/bin/clang++",
+           "args": [
+                "-std=c++17",
+                "-O3",
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
+                "-g",
+                "/Users/ree151/projects/hello_world/test.cpp",
+                "-g",
+                "/Users/ree151/projects/hello_world/player.cpp",
+                "-g",
+                "/Users/ree151/projects/hello_world/LTimer.cpp",
+                "-o",
+                "game",
+                "-lSDL2"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "compiler: /usr/bin/clang++"
+        }
+    ],
+    "version": "2.0.0"
+}
