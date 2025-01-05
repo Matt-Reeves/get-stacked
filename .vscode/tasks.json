@@ -10,13 +10,11 @@
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
                 "-g",
-                "/Users/ree151/projects/hello_world/test.cpp",
-                "-g",
-                "/Users/ree151/projects/hello_world/player.cpp",
-                "-g",
-                "/Users/ree151/projects/hello_world/LTimer.cpp",
+                "-I",
+                "${workspaceFolder}/headers",
+                "${workspaceFolder}/src/*.cpp",
                 "-o",
-                "game",
+                "${workspaceFolder}/bin/game",
                 "-lSDL2"
             ],
             "options": {

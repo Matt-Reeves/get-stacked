@@ -11,7 +11,7 @@
       "type": "lldb",
       "request": "launch",
       "name": "Debug",
-      "program": "game",
+      "program": "${workspaceFolder}/bin/game",
       "args": [],
       "cwd": "${workspaceFolder}",
       "env": {

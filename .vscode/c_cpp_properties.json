@@ -3,8 +3,9 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}",
-                "/Users/ree151/projects/hello_world/SDL/include"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/headers",
+                "${workspaceFolder}/src"
             ],
             "defines": [],
             "macFrameworkPath": [
