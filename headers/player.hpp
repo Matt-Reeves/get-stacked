@@ -39,6 +39,11 @@ class Player {
         SDL_Rect* getRect(){return &rect;}
         void handleEvents(const SDL_Event &e);
         void move(const float &deltaTime);
+        void setVelocity(int Vx, int Vy){this-> Vx = Vx; this-> Vy = Vy;}
+        int getVelocityY(){return Vy;}
+        int getVelocityX(){return Vx;}
+        void setVelocityY(int Vy){this->Vy = Vy;}
+        void setVelocityX(int Vx){this->Vy = Vx;}
         
         void update(const float &deltaTime);
         void detectCollisions(Level &level);

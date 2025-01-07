@@ -91,10 +91,10 @@ void Player::detectCollisions(Level &level){
             if (Vy >= 0){
                 if (isWithinBounds(currentPlatform,rect))
                 {   
-                            std::cout << "Collision detected: Platform " << i <<  std::endl;
-                            Vy = 0;
-                            rect.y = currentPlatform->y - rect.h;
-                            isGrounded = true;
+                    std::cout << "Collision detected: Platform " << i <<  std::endl;
+                    Vy = 0;
+                    rect.y = currentPlatform->y - rect.h;
+                    isGrounded = true;
                 }
                 else
                 { 

@@ -11,4 +11,9 @@ const int GRAVITY = 2000;
 // Debuging mode
 const bool DEBUG_MODE = false; 
 
+struct int2 {
+    int x;
+    int y;
+};
+
 #endif
