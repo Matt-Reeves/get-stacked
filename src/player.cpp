@@ -16,6 +16,11 @@ Player::Player(){
 
 }
 
+// Destructor
+Player::~Player() {
+    delete currentState; // Clean up the current state
+}
+
 void Player::handleEvents(const SDL_Event& e){
 
 if ( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
@@ -69,14 +74,12 @@ if (rect.x + rect.w > SCREEN_WIDTH || rect.x < 0 ){
 }
 
 
-
-
 void Player::detectCollisions(Level &level){
 
     //Lambda for bounds checks
     auto isWithinBounds = [](SDL_Rect* platform, SDL_Rect &rect) {
-            bool yOverlap = rect.y + rect.h >= platform->y && rect.y <= platform->y + platform->h;
-            bool xOverlap = rect.x + rect.w >= platform->x && rect.x <= platform->x + platform->w;
+            bool yOverlap = rect.y + rect.h >= platform->y && rect.y + rect.h <= platform->y + platform->h;
+            bool xOverlap = rect.x + rect.w >= platform->x && rect.x  <= platform->x + platform->w;
         return xOverlap && yOverlap;
     };
 
@@ -105,3 +108,17 @@ void Player::detectCollisions(Level &level){
     std::cout << "Grounded: " << isGrounded << std::endl;
     }
     
+
+// void Player::handleEvents(const SDL_Event& e) {
+//     currentState->handleEvents(*this, e);
+// }
+
+void Player::update(const float &deltaTime) {
+    currentState->update(*this, deltaTime);
+}
+
+void Player::changeState(PlayerState* newState) {
+    delete currentState;
+    currentState = newState;
+}
+

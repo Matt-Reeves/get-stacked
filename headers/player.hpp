@@ -34,11 +34,13 @@ class Player {
 
     public:
         Player();
-        ~Player(){};
+        ~Player();
         
         SDL_Rect* getRect(){return &rect;}
         void handleEvents(const SDL_Event &e);
         void move(const float &deltaTime);
+        
+        void update(const float &deltaTime);
         void detectCollisions(Level &level);
         void changeState(PlayerState* newState);
         
