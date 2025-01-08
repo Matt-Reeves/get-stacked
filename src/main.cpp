@@ -90,9 +90,12 @@ int main() {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) quit = true; // User requests quit
             player.handleEvents(e);
+            player.printState();
         }
+        player.update(deltaTime);
         
-        player.move(deltaTime);
+        
+        //player.move(deltaTime);
         player.detectCollisions(level);
         
         

@@ -12,6 +12,7 @@ Player::Player(){
     rect.y = 0;
     rect.h = RECT_HEIGHT;
     rect.w = RECT_WIDTH;
+    currentState = new IdleState();
     //currentState = new IdleState();
 
 }
@@ -21,41 +22,41 @@ Player::~Player() {
     delete currentState; // Clean up the current state
 }
 
-void Player::handleEvents(const SDL_Event& e){
+// void Player::handleEvents(const SDL_Event& e){
 
-if ( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
-{
-    //Adjust the velocity
-    switch( e.key.keysym.sym )
-    {
-        case SDLK_LEFT: Vx -= VEL; break;
-        case SDLK_RIGHT: Vx += VEL; break;
-        case SDLK_SPACE: 
-            if (isGrounded){
-                Vy -= VEL; 
-                isGrounded = false;
-            }
-                break;
+// if ( e.type == SDL_KEYDOWN && e.key.repeat == 0 )
+// {
+//     //Adjust the velocity
+//     switch( e.key.keysym.sym )
+//     {
+//         case SDLK_LEFT: Vx -= VEL; break;
+//         case SDLK_RIGHT: Vx += VEL; break;
+//         case SDLK_SPACE: 
+//             if (isGrounded){
+//                 Vy -= VEL; 
+//                 isGrounded = false;
+//             }
+//                 break;
             
-    }
-}
-//If a key was released
-else if ( e.type == SDL_KEYUP && e.key.repeat == 0 )
-{
-    //Adjust the velocity
-    switch( e.key.keysym.sym )
-    {
-            case SDLK_LEFT: Vx += VEL; break;
-            case SDLK_RIGHT: Vx -= VEL; break;
-            case SDLK_SPACE: 
-                if (Vy < 0){ 
-                    Vy /= 2; 
-                    break;
-                }
+//     }
+// }
+// //If a key was released
+// else if ( e.type == SDL_KEYUP && e.key.repeat == 0 )
+// {
+//     //Adjust the velocity
+//     switch( e.key.keysym.sym )
+//     {
+//             case SDLK_LEFT: Vx += VEL; break;
+//             case SDLK_RIGHT: Vx -= VEL; break;
+//             case SDLK_SPACE: 
+//                 if (Vy < 0){ 
+//                     Vy /= 2; 
+//                     break;
+//                 }
             
-    }
-    }
-}
+//     }
+//     }
+// }
 
 void Player::move(const float &deltaTime ){
 
@@ -109,9 +110,9 @@ void Player::detectCollisions(Level &level){
     }
     
 
-// void Player::handleEvents(const SDL_Event& e) {
-//     currentState->handleEvents(*this, e);
-// }
+void Player::handleEvents(const SDL_Event& e) {
+    currentState->handleEvents(*this, e);
+}
 
 void Player::update(const float &deltaTime) {
     currentState->update(*this, deltaTime);

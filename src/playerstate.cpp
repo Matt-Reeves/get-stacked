@@ -11,6 +11,7 @@ void IdleState::handleEvents(Player& player, const SDL_Event& e) {
                 player.changeState(new MovingState());
                 break;
             case SDLK_LEFT:
+                //player.setVelocityX(-VEL);
                 player.changeState(new MovingState());
                 break;
             case SDLK_SPACE:
@@ -37,7 +38,11 @@ void MovingState::handleEvents(Player& player, const SDL_Event& e) {
 }
 
 void MovingState::update(Player& player, float deltaTime) {
-    //
+    if (player.getVelocityX() < VEL){
+        player.setVelocityX( player.getVelocityX() + VEL/10);
+    }
+    player.move(deltaTime);
+    
 
 }
 

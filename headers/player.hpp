@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "level.hpp"
 #include "playerstate.hpp"
+#include <memory>
 
 enum State {
     IDLE         = 0,
@@ -43,11 +44,12 @@ class Player {
         int getVelocityY(){return Vy;}
         int getVelocityX(){return Vx;}
         void setVelocityY(int Vy){this->Vy = Vy;}
-        void setVelocityX(int Vx){this->Vy = Vx;}
+        void setVelocityX(int Vx){this->Vx = Vx;}
         
         void update(const float &deltaTime);
         void detectCollisions(Level &level);
         void changeState(PlayerState* newState);
+        void printState(){currentState->print();}
         
 };
 
