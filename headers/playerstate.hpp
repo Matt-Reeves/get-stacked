@@ -21,7 +21,7 @@ public:
         std::cout << "Player is in Idle state." << std::endl;
     }
 };
-
+//
 class MovingState : public PlayerState {
 public:
     void handleEvents(Player& player, const SDL_Event& e) override;
