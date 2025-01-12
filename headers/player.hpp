@@ -24,21 +24,23 @@ class Player {
         int Vx, Vy;
         SDL_Rect rect;
         
-        bool isJumping;
-        bool isFalling;
-        bool isGrounded;
-        bool canMove;
-
         const int VEL = 800;
         const int RECT_WIDTH = 40;
         const int RECT_HEIGHT = 60;
 
     public:
+
+        bool isJumping;
+        bool isFalling;
+        bool isGrounded;
+        bool canMove;
+
         Player();
         ~Player();
         
         SDL_Rect* getRect(){return &rect;}
         void handleEvents(const SDL_Event &e);
+        void logicUpdate(Level& level);
         void move(const float &deltaTime);
         void setVelocity(int Vx, int Vy){this-> Vx = Vx; this-> Vy = Vy;}
         int getVelocityY(){return Vy;}
@@ -47,7 +49,7 @@ class Player {
         void setVelocityX(int Vx){this->Vx = Vx;}
         
         void update(const float &deltaTime);
-        void detectCollisions(Level &level);
+        bool detectCollisions(Level &level);
         void changeState(PlayerState* newState);
         void printState(){currentState->print();}
         

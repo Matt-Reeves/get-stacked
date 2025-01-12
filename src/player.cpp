@@ -12,7 +12,7 @@ Player::Player(){
     rect.y = 0;
     rect.h = RECT_HEIGHT;
     rect.w = RECT_WIDTH;
-    currentState = new IdleState();
+    currentState = new JumpingState();
     //currentState = new IdleState();
 
 }
@@ -64,8 +64,10 @@ rect.x += Vx*deltaTime;
 rect.y += Vy*deltaTime;
 
 //Update position (forward Euler)
-if (!isGrounded)
+ if (!isGrounded)
     Vy += GRAVITY*deltaTime;
+// if (*currentState == MovingState)
+
 
 //Undo movement if collision with wall occurs
 if (rect.x + rect.w > SCREEN_WIDTH || rect.x < 0 ){ 
@@ -75,7 +77,7 @@ if (rect.x + rect.w > SCREEN_WIDTH || rect.x < 0 ){
 }
 
 
-void Player::detectCollisions(Level &level){
+bool Player::detectCollisions(Level &level){
 
     //Lambda for bounds checks
     auto isWithinBounds = [](SDL_Rect* platform, SDL_Rect &rect) {
@@ -87,7 +89,6 @@ void Player::detectCollisions(Level &level){
         //Check for platform collisions
         std::size_t numPlatforms = level.platforms.size();
         for (std::size_t i=0; i<numPlatforms; i++){
-
             SDL_Rect *currentPlatform = level.platforms[i].getRect();
             if (Vy >= 0){
                 if (isWithinBounds(currentPlatform,rect))
@@ -96,6 +97,7 @@ void Player::detectCollisions(Level &level){
                     Vy = 0;
                     rect.y = currentPlatform->y - rect.h;
                     isGrounded = true;
+                    return true;
                 }
                 else
                 { 
@@ -103,15 +105,18 @@ void Player::detectCollisions(Level &level){
                 }
                 
             }
-                if (isGrounded) break;
-            }
-            
-    std::cout << "Grounded: " << isGrounded << std::endl;
+                //if (isGrounded) break;
+        }
+            return false;
     }
     
 
 void Player::handleEvents(const SDL_Event& e) {
     currentState->handleEvents(*this, e);
+}
+
+void Player::logicUpdate(Level& level){
+    currentState->logicUpdate(*this, level);
 }
 
 void Player::update(const float &deltaTime) {

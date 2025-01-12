@@ -92,11 +92,13 @@ int main() {
             player.handleEvents(e);
             player.printState();
         }
+
+        player.logicUpdate(level);
         player.update(deltaTime);
         
         
         //player.move(deltaTime);
-        player.detectCollisions(level);
+        //player.detectCollisions(level);
         
         
     }
